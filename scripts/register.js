@@ -9,44 +9,62 @@ let petSalon = {
     phone:"111-222-3333"
 }
 
-console.log(petSalon)
-
-//creating the pets
-let pet1 = {
-    name:"Attilla",
-    age:9,
-    gender:"Female",
-    service:"Grooming",
-    breed:"Cat"
-}
-let pet2 = {
-    name:"Fenrir",
-    age:5,
-    gender:"Male",
-    service:"Nail Trimming",
-    breed:"Cat"
-}
-let pet3 = {
-    name:"Daisy",
-    age:15,
-    gender:"Female",
-    service:"Grooming",
-    breed:"Dog"
+//Object constructor
+function Pet(name,age,gender,type,breed,service){
+    this.name=name;
+    this.age=age;
+    this.gender=gender;
+    this.type=type
+    this.breed=breed;
+    this.service=service;
 }
 
-pets.push(pet1,pet2,pet3);
-console.log(pets);
+//creating the variables for the HTML Elements
+let inputName=document.getElementById("txtName");
+let inputAge=document.getElementById("txtAge");
+let inputGender=document.getElementById("txtGender");
+let inputType=document.getElementById("txtType");
+let inputBreed=document.getElementById("txtBreed");
+let inputService=document.getElementById("txtService");
 
-function displayNames(){
-    document.getElementById("petListings").innerHTML+=(`<h2> we have ${pets.length} pets in line!</h2>`);
+function register(){
+    
+    let newPet=new Pet(inputName.value,inputAge.value,inputGender.value,inputBreed.value,inputService.value);//create the new pet object
+    pets.push(newPet);//push the newpet into array
 
-    for(i=0;i<=pets.length;i++){
-        document.getElementById("petListings").innerHTML+=(`<p> ${pets[i].name} </p>`);
-
+    //clear the form
+    document.getElementById("txtName").value="";
+    document.getElementById("txtAge").value="";
+    document.getElementById("txtGender").value="";
+    document.getElementById("txtType").value="";
+    document.getElementById("txtBreed").value="";
+    document.getElementById("txtService").value="";
+    document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;//display the array
+    for (i=pets.length-1;i<pets.length;i++){
+        document.getElementById("specificPets").innerHTML+=`${i+1})<div class="petBlock"> <li>Name:${pets[i].name}</li> <li>Age:${pets[i].age}</li> <li>Gender:${pets[i].gender}</li> <li>Species:${pets[i].type}</li> <li>Breed:${pets[i].breed}</li> <li>Service:${pets[i].service}</li> </div>`
     }
     
+}
+
+function init(){
+    //Create a new pet
+    let pet1=new Pet("Attilla",9,"Female","Cat","Domestic Long Hair","Grooming");
+    let pet2=new Pet("Fenrir",5,"Male","Cat","Tuxedo","Nail Trimming");
+    let pet3=new Pet("Daisy",15,"Female","Dog","Husky","Vaccines");
+    
+    
+    pets.push(pet1,pet2,pet3);
+    document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;//display the array
+
+    for (i=0;i<pets.length;i++){
+        document.getElementById("specificPets").innerHTML+=`${i+1})<div class="petBlock"> <li>Name:${pets[i].name}</li> <li>Age:${pets[i].age}</li> <li>Gender:${pets[i].gender}</li> <li>Species:${pets[i].type}</li> <li>Breed:${pets[i].breed}</li> <li>Service:${pets[i].service}</li> </div>`
+    }
+
 
 }
 
-displayNames();
+window.onload=init; //wait to render the HTML
+
+
+console.log(pets);
 

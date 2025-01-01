@@ -4,22 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/registerstyle.css">
-    <title>Register</title>
+    <title>Register your pet!</title>
 </head>
 <body>
     <header class="registerbanner">
-        <h1>Register your pet!</h1>
+        <h1 class="pageTitle">Register your pet!</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="services">Services</a>
             <a href="register.html">Register a Pet</a>
         </nav>
     </header>
-    <div id="petListings">
+    <main>
+        <div class="petInfo" id="petForm">
+            <div class="input-control">
+                <label>Name: </label>
+                <input type="text" id="txtName">
+            </div>
+            <div class="input-control">
+                <label>Age: </label>
+                <input type="text" id="txtAge">
+            </div>
+            <div class="input-control">
+                <label>Gender: </label>
+                <input type="text" id="txtGender">
+            </div>
+            <div class="input-control">
+                <label>Type: </label>
+                <select id="txtType">
+                    <option value="">-- Select the type of Animal --</option>
+                    <option value="bird">Bird</option>
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                </select>
+            </div>
+            <div class="input-control">
+                <label>Breed: </label>
+                <input type="text" id="txtBreed">
+            </div>
 
-    </div>
+            <div class="input-control">
+                <label>Service: </label>
+                <select id="txtService">
+                    <option value="">-- Select an option --</option>
+                    <option value="grooming">Grooming</option>
+                    <option value="nails">Nail Trimming</option>
+                    <option value="vaccines">Vaccines</option>
+                </select>
+            </div>
+            <div class="btn-container">
+            <button class="btn-register" onclick="register()">Register</button>
+            </div>
+        </div>
+        <div class="waitList" id="petListings">
+
+        </div>
+        <div class="petSpecifics" id="specificPets">
+
+        </div>
+    </main>
     
-
     <script src="scripts/register.js"></script>
 </body>
 </html>
