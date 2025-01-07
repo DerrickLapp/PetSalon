@@ -10,13 +10,14 @@ let petSalon = {
 }
 
 //Object constructor
-function Pet(name,age,gender,type,breed,service){
+function Pet(name,age,gender,type,breed,service,appt){
     this.name=name;
     this.age=age;
     this.gender=gender;
     this.type=type
     this.breed=breed;
     this.service=service;
+    this.appt=appt;
 }
 
 //creating the variables for the HTML Elements
@@ -26,22 +27,26 @@ let inputGender=document.getElementById("txtGender");
 let inputType=document.getElementById("txtType");
 let inputBreed=document.getElementById("txtBreed");
 let inputService=document.getElementById("txtService");
+let inputAppt=document.getElementById("txtAppt");
 
 function register(){
     //create the new pet object
-    let newPet=new Pet(inputName.value,inputAge.value,inputGender.value,inputType.value,inputBreed.value,inputService.value);
+    let newPet=new Pet(inputName.value,inputAge.value,inputGender.value,inputType.value,inputBreed.value,inputService.value,inputAppt.value);
 
     pets.push(newPet);//push the newpet into array
 
     //clear the form *OLD*
-    //document.getElementById("txtName").value="";
-    //document.getElementById("txtAge").value="";
-    //document.getElementById("txtGender").value="";
-    //document.getElementById("txtType").value="";
-    //document.getElementById("txtBreed").value="";
-    //document.getElementById("txtService").value="";
-    
-    document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;//display the current waitlist length
+    /*
+    document.getElementById("txtName").value="";
+    document.getElementById("txtAge").value="";
+    document.getElementById("txtGender").value="";
+    document.getElementById("txtType").value="";
+    document.getElementById("txtBreed").value="";
+    document.getElementById("txtService").value="";
+    */
+
+    //display the current waitlist length
+    //document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;
     
     //display the current array information *OLD*
     //for (i=pets.length-1;i<pets.length;i++){
@@ -50,10 +55,11 @@ function register(){
     //Other displayPetCards
     displayPetRow();
     clearForm();
-    
+    $("#btn-notification").fadeIn().delay(3000).fadeOut();
     
 }
 
+//Clearing the Form
 function clearForm(){
     document.getElementById("txtName").value="";
     document.getElementById("txtAge").value="";
@@ -61,19 +67,31 @@ function clearForm(){
     document.getElementById("txtType").value="";
     document.getElementById("txtBreed").value="";
     document.getElementById("txtService").value="";
+    document.getElementById("txtAppt").value="";
     
+}
+
+//Deleting Pets
+function deletePet(petId){
+    console.log("Pet id:", petId);
+    document.getElementById(petId).remove();
+    pets.splice(petId,1);
+    
+    displayPetRow();
+    displayInfo();
+
 }
 
 function init(){
     //Create a new pet by filling the constructor with arguments
-    let pet1=new Pet("Attilla",9,"Female","Cat","Domestic Long Hair","Grooming");
-    let pet2=new Pet("Fenrir",5,"Male","Cat","Tuxedo","Nail Trimming");
-    let pet3=new Pet("Daisy",15,"Female","Dog","Husky","Vaccines");
+    let pet1=new Pet("Attilla",9,"Female","Cat","Domestic Long Hair","Grooming","Scheduled");
+    let pet2=new Pet("Fenrir",5,"Male","Cat","Tuxedo","Nail Trimming","Scheduled");
+    let pet3=new Pet("Daisy",15,"Female","Dog","Husky","Vaccines","Walk-in");
     
     
     pets.push(pet1,pet2,pet3);
 
-    document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;//display the initial waitlist length
+    //document.getElementById("petListings").innerHTML=`<p>Current wait list: ${pets.length} </p>`;//display the initial waitlist length
 
     //display the initial array information *OLD*
     //for (i=0;i<pets.length;i++){

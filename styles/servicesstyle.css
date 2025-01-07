@@ -1,4 +1,4 @@
-/** global **/
+/**global**/
 body{
     background-color: lightblue;
 }
@@ -7,47 +7,51 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
-/** Utilities **/
-.registerbanner{
-    background-image: url(/img/CatBanner.jpg);
-    background-position-y: 2%;
+
+/**Utilities**/
+.servicesbanner{
+    background-image: url(/img/BirdBanner.jpg);
+    background-position-y: 1%;
     height: 250px;
     background-size: cover;
     display: flex;
     justify-content: space-between;
     font-size: 22px;
 }
-
+.servicesbanner h1{
+    font-size: 54px;
+    text-decoration: underline;
+}
 nav{
     margin-top: auto;
     margin-right: 10%;
 }
-.registerbanner a{
+.servicesbanner a{
     text-decoration: none;
     color: black;
     border: 2px solid black;
     border-radius: 5px;
     background-color: orange;
-}
 
-/** body **/
+}
+/** Header **/
 .pageTitle{
     margin-top: auto;
     margin-bottom: 2px;
     text-decoration: underline;
     font-size: 54px;
 }
-.waitList{
+
+/**Body**/
+.serviceList{
     display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    margin-left: 10rem;
+    justify-content: space-between;
+    margin: auto;
+    padding: 2rem;
 }
-.waitList p{
-    font-size: 36px;
-    text-decoration: underline;
-}
-.petInfo{
+
+/**Form**/
+.servicesInfo{
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -58,18 +62,6 @@ nav{
     border-radius: 5px;
     padding: 1rem;
 }
-.petSpecifics{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 24px;
-}
-.petSpecifics li{
-    padding: 2px;
-}
-/** Register Form **/
-
 .input-control{
     display: flex;
     justify-content: space-between;
@@ -79,6 +71,12 @@ nav{
 
 }
 .input-control input{
+    width: 80%;
+    padding: 3px;
+    border: none;
+
+}
+.input-control textarea{
     width: 80%;
     padding: 3px;
     border: none;
@@ -108,25 +106,4 @@ nav{
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-}
-.petBlock{
-    border: 2px solid black;
-    border-radius: 5px;
-    list-style: none;
-    margin-right: 15%;
-    margin-bottom: 2rem;
-}
-.btn-deletebutton{
-    display: flex;
-    justify-content: center;
-}
-.notification {
-    margin-right: auto;
-    margin-left: auto;
-    display: none;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    margin-top: 10px;
 }
