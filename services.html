@@ -17,44 +17,49 @@
             <a href="register.html">Register a Pet</a>
         </nav>
     </header>
-    <main>
+    <main class="mainBody">
         <!--Create a register form for services and the div for displaying (use ID)-->
         <div class="servicesInfo">
             <div class="input-control">
                 <label>Service Name: </label>
                 <input type="text" id="sName">
+                <small id="nameRequirementText">**This field is required.</small>
             </div>
             <div class="input-control">
                 <label>Description: </label>
-                <input id="sDescript"></input>
+                <textarea id="sDescript"></textarea>
+                <small id="desRequirementText">**This field is required.</small>
             </div>
             <div class="input-control">
                 <label>Price: </label>
                 <input type="number" id="sPrice">
+                <small id="priceRequirementText">**This field is required.</small>
             </div>
             <div class="btn-container">
                 <button class="btn-register" id="registerBtn">Register</button>
             </div>
+            <div class="notification" id="btn-notification">Service Registered!</div>
         </div>
         <br>
         <br>
-        <table class="container table table-bordered table-hover table-striped table-responsive">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Remove</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider"  id="serviceList">
-                    
-            </tbody>
-        </table>
+        <div class="serviceCards" id="serviceList"></div>
     </main>
+    <footer class="pageFooter">
+        <div class="pageFooterLeft">
+            <h6>The Pretty Precious Pets Salon</h6>
+            <i class="fa-regular fa-copyright"></i>
+        </div>
+        <div>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+    </footer>
 
+
+    <script src="https://kit.fontawesome.com/337be747ec.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="scripts/storeManager.js"></script>
     <script src="scripts/services.js"></script>
 </body>
 </html>

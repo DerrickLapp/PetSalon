@@ -55,7 +55,7 @@ function register(){
     //Other displayPetCards
     displayPetRow();
     clearForm();
-    $("#btn-notification").fadeIn().delay(3000).fadeOut();
+    $("#btn-notification").fadeIn().delay(1000).fadeOut();
     
 }
 

@@ -38,7 +38,9 @@ nav{
     padding-top: 2rem;
 }
 /** Body **/
-
+.mainBody{
+    margin-bottom: 10rem;
+}
 .frontpage_container{
 
     margin-right: auto;
@@ -55,4 +57,27 @@ nav{
 .frontpage_container h3{
     font-size: 24px;
     text-decoration: underline;
+}
+
+/**Footer**/
+.pageFooter{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 2px;
+    border-top: 2px solid black;
+    font-size: 36px;
+}
+.pageFooter h6{
+    font-size: 20px;
+    margin-right: 1rem;
+}
+.pageFooterLeft{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
