@@ -48,6 +48,7 @@ function validService(service){
 }
 
 
+
 //register and display
 
 function registerService(){
@@ -66,7 +67,8 @@ function registerService(){
         $("#btn-notification").fadeIn().delay(1000).fadeOut();
     }
 
-
+    $("#showDescript").on("mouseenter",inDescript);
+    $("#showDescript").on("mouseleave",outDescript);
 }
 
 function displayServices(){
@@ -77,20 +79,31 @@ function displayServices(){
 
         serviceresult = `
             <div id="${i}" class="card col-3 mx-2">
-                <div class="card-body">
+                <div class="card-body" id="showDescript">
                     <h5 class="class-title">${service.servicename}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">${service.description}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary" id="hideDescript">${service.description}</h6>
                     <p class="card-text">$ ${service.price}</p>
-                    <button class="btn btn-danger btn-sm">Delete</button>
                 </div>
             </div>
         `
         //console.log(serviceresult);
         serviceList.append(serviceresult);
     }
-
     
 }
+
+//show the description
+function inDescript() {
+    $("#hideDescript").fadeIn();
+}
+
+//hide again
+function outDescript() {
+    $("#hideDescript").fadeOut();
+}
+
+
+
 
 //Clearing the Form
 function clearServiceForm(){
@@ -104,13 +117,14 @@ function init(){
     let service1=new Service("Grooming","Fur Brushing, Cleaning, and Trimming","25");
     let service2=new Service("Nail Trimming","Safely and Carefully trimming those long claws", "10");
     let service3=new Service("Vaccines","Protect your pet!","60");
-        
-        
+    
+    
     services.push(service1,service2,service3);
-
+    
     $("#registerBtn").on("click",registerService);
-
     displayServices();
+    $("#showDescript").on("mouseenter",inDescript);
+    $("#showDescript").on("mouseleave",outDescript);
 }
 
 window.onload=init;

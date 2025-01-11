@@ -82,6 +82,26 @@ function deletePet(petId){
 
 }
 
+//TODO get services from local Storage
+function getServices(){
+    console.log("getServices function");
+
+    let services = read();
+    let option = "";
+
+    for(let i=0; i<services.length; i++){
+        let service = services[i];
+        
+        option +=
+        `
+        <option value="${service.servicename}">${service.servicename} - $ ${service.price}</option>
+        `
+    }
+
+    $("#txtService").append(option);
+    
+}
+
 function init(){
     //Create a new pet by filling the constructor with arguments
     let pet1=new Pet("Attilla",9,"Female","Cat","Domestic Long Hair","Grooming","Scheduled");
@@ -103,7 +123,7 @@ function init(){
 
     //Displaying Pet Table
     displayPetRow();
-
+    getServices();
 
 }
 
