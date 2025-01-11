@@ -175,6 +175,6 @@ nav{
     color: red;
 }
 
-#hideDescript{
+.card-subtitle{
     display: none;
 }

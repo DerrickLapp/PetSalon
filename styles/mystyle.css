@@ -56,6 +56,14 @@ nav{
     font-size: 24px;
     text-decoration: underline;
 }
+.indexServices{
+    width: 80%;
+}
+.card{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
 
 /**Footer**/
 .pageFooter{

@@ -17,7 +17,7 @@ function validService(service){
     let isValidPrice = true;
 
     if(service.servicename == ""){
-        //if I get here the description is empty
+        //if I get here the service name is empty
         isValidName =false;
         $("#sName").css("border","2px solid red");
         $("#nameRequirementText").show();
@@ -35,7 +35,7 @@ function validService(service){
         $("#desRequirementText").hide();
     }
     if(service.price == ""){
-        //if I get here the description is empty
+        //if I get here the price is empty
         isValidPrice =false;
         $("#sPrice").css("border","2px solid red");
         $("#priceRequirementText").show();
@@ -61,7 +61,7 @@ function registerService(){
     if(validService(newService)){
         save(newService); // this function is on the storeManager
         services.push(newService);//push the newService into array
-        displayServices();
+        getServices();
         clearServiceForm();
         console.log("A new service was added");
         $("#btn-notification").fadeIn().delay(1000).fadeOut();
@@ -71,35 +71,65 @@ function registerService(){
     $("#showDescript").on("mouseleave",outDescript);
 }
 
-function displayServices(){
-    let serviceList = $("#serviceList").html("");
-    let serviceresult="";
-    for(let i=0;i<services.length;i++){
-        let service=services[i];
+//Display hard-coded services from array
+// function displayServices(){
+//     let serviceList = $("#serviceList").html("");
+//     let serviceresult="";
+//     for(let i=0;i<services.length;i++){
+//         let service=services[i];
 
-        serviceresult = `
-            <div id="${i}" class="card col-3 mx-2">
-                <div class="card-body" id="showDescript">
-                    <h5 class="class-title">${service.servicename}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary" id="hideDescript">${service.description}</h6>
-                    <p class="card-text">$ ${service.price}</p>
-                </div>
-            </div>
-        `
-        //console.log(serviceresult);
-        serviceList.append(serviceresult);
-    }
+//         serviceresult = `
+//             <div id="${i}" class="card col-3 mx-2">
+//                 <div class="card-body" id="showDescript">
+//                     <h5 class="class-title">${service.servicename}</h5>
+//                     <h6 class="card-subtitle mb-2 text-body-secondary" id="hideDescript">${service.description}</h6>
+//                     <p class="card-text">$ ${service.price}</p>
+//                 </div>
+//             </div>
+//         `
+//         //console.log(serviceresult);
+//         serviceList.append(serviceresult);
+//     }
     
+// }
+
+//Services from localStorage
+function getServices(){
+    console.log("getServices function");
+    $("#serviceList").empty();
+
+    let services = read();
+    let serviceCard = "";
+
+    for(let i=0; i<services.length; i++){
+        let service = services[i];
+        
+        serviceCard +=
+        `
+        <div id="${i}" class="card col-3 mx-2">
+            <div class="card-body" id="${i}showDescript">
+                <h5 class="class-title">${service.servicename}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary" id="${i}hideDescript">${service.description}</h6>
+                <p class="card-text">$ ${service.price}</p>
+            </div>
+        </div>
+        `
+
+    }
+
+    $("#serviceList").append(serviceCard);
+    $(".card").hover(inDescript,outDescript)
+
 }
 
 //show the description
 function inDescript() {
-    $("#hideDescript").fadeIn();
+    $(".card-subtitle").fadeIn();
 }
 
 //hide again
 function outDescript() {
-    $("#hideDescript").fadeOut();
+    $(".card-subtitle").fadeOut();
 }
 
 
@@ -112,19 +142,25 @@ function clearServiceForm(){
     $("#sPrice").val("");
 }
 
+
 function init(){
     //by default services 
     let service1=new Service("Grooming","Fur Brushing, Cleaning, and Trimming","25");
     let service2=new Service("Nail Trimming","Safely and Carefully trimming those long claws", "10");
     let service3=new Service("Vaccines","Protect your pet!","60");
     
-    
     services.push(service1,service2,service3);
     
+    if(localStorage.key(0) !== "services"){
+        save(service1);
+        save(service2);
+        save(service3);
+    }
+    
+    
     $("#registerBtn").on("click",registerService);
-    displayServices();
-    $("#showDescript").on("mouseenter",inDescript);
-    $("#showDescript").on("mouseleave",outDescript);
+    getServices();
+    $(".card").hover(inDescript,outDescript)
 }
 
 window.onload=init;
